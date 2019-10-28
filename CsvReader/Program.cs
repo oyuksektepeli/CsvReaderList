@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CsvReaderList
 {
@@ -6,16 +7,17 @@ namespace CsvReaderList
     {
         static void Main(string[] args)
         {
-            string filepath = @"C:\Repos\CsvReader\CountryPopulations.csv";
+            string filepath = @"C:\Repos\CsvReaderList\CountryPopulations.csv";
 
             Reader csvreader = new Reader(filepath);
 
-            Country[] countries = csvreader.ReadFirstNCountries(10);
+            List<Country> countries = csvreader.ReadAllCountries();
 
             foreach(Country country in countries)
             {
                 Console.WriteLine($"{Formatter.FormatPopulation(country.Population).PadLeft(15)}: {country.Name}");
             }
+            Console.WriteLine($"{countries.Count} countries");
         }
     }
 }
